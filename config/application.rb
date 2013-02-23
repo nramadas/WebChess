@@ -58,5 +58,8 @@ module WebChess
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Add Library folder to load path
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end
