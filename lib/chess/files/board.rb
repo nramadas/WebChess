@@ -65,6 +65,8 @@ module Chess
 				puts
 				puts "  -----------------------------------------"
 			end
+
+			return nil
 		end		
 
 	end

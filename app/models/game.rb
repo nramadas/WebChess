@@ -11,6 +11,14 @@ class Game < ActiveRecord::Base
   def generate_token
     self.game_token = SecureRandom.hex
     self.last_moved = 1
+    self.game_state = Chess::Game.new.to_yaml
+  end
+
+  def move(instruction_string)
+    game = YAML::load(self.game_state)
+    game.get_move(instruction_string)
+    # game_state = game.to_yaml
+    self.update_attributes(game_state: game.to_yaml)
   end
 
   def to_param
