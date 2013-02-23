@@ -63,3 +63,5 @@ module WebChess
     config.autoload_paths += %W(#{config.root}/lib)
   end
 end
+
+require "./lib/chess/chess.rb"

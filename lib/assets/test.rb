@@ -6,5 +6,9 @@ module Assets
       puts "hello"
     end
 
+    def initialize
+      @ob = "yay"
+    end
+
   end
 end
