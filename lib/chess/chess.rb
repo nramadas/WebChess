@@ -59,7 +59,7 @@ module Chess
 
 			@current_player = piece.other_player
 
-			@board.print_layout
+			# @board.print_layout
 		end
 
 		def parse_move(instruction_string)

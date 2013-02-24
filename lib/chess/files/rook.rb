@@ -23,7 +23,7 @@ module Chess
 				rook_col = queen_side? ? 3 : 5
 
 				if is_valid_move?(@row, rook_col)
-					if castle_causes_check?
+					if castle_causes_check?(rook_col, king_col)
 						raise BadMove, "Cannot castle into check"
 					else
 						execute_castle(rook_col, king_col)

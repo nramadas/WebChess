@@ -13,6 +13,7 @@ group :development, :test do
   gem 'terminal-notifier-guard'
   gem 'sqlite3'
   gem 'capybara'
+  gem 'colorize'
 end
 
 group :development do
