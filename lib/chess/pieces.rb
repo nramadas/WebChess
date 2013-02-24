@@ -100,9 +100,9 @@ module Chess
 			(@player == :white) ? :black : :white
 		end
 
-		def self_player
-			(@player == :white) ? :white : :black
-		end
+		# def self_player
+		# 	(@player == :white) ? :white : :black
+		# end
 
 		private
 

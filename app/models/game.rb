@@ -1,6 +1,4 @@
 class Game < ActiveRecord::Base
-  attr_accessible :game_state, :game_token, :last_moved
-
   has_many :cookie_items
   after_initialize :generate_token
 
@@ -16,9 +14,10 @@ class Game < ActiveRecord::Base
 
   def move(instruction_string)
     game = YAML::load(self.game_state)
-    game.get_move(instruction_string)
-    # game_state = game.to_yaml
-    self.update_attributes(game_state: game.to_yaml)
+    game.move(instruction_string)
+    self.update_attributes!(game_state: game.to_yaml,
+                            last_moved: self.last_moved *= -1)
+
   end
 
   def to_param
@@ -26,8 +25,13 @@ class Game < ActiveRecord::Base
   end
 
   def max_number_of_players
-    unless cookie_items.size <= 2
-      errors.add_to_base("No more than two players to a game")
+    unless self.cookie_items.size <= 2
+      errors.add_to_base("No more than two players to a game.")
     end
+  end
+
+  # For testing:
+  def print_board
+    YAML::load(self.game_state).board.print_layout
   end
 end
