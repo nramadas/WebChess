@@ -15,7 +15,7 @@ require_relative './files/errors.rb'
 module Chess
 	class Game
 
-		attr_reader :board
+		attr_reader :board, :current_player
 
 		def initialize
 			@board = Board.new
@@ -25,8 +25,7 @@ module Chess
 
 		def determine_checkmate(current_player)
 			if @board.find_king(current_player).in_checkmate?
-				game_over
-				true
+				return true
 			end
 
 			false
@@ -34,16 +33,16 @@ module Chess
 
 		def determine_check(current_player)
 			if @board.find_king(current_player).in_check?
-				puts "In check!"
+				return true
 			end
+
+			false
 		end
 
 		def move(instruction_string)
 			start_pos, end_pos = parse_move(instruction_string)
 
-			raise EndGame, "Checkmate" if determine_checkmate(@current_player)
-
-			raise Trouble, "Check" if determine_check(@current_player)
+			# check = determine_check(@current_player)
 
 			piece = get_piece(start_pos)
 
@@ -59,7 +58,7 @@ module Chess
 
 			@current_player = piece.other_player
 
-			@board.print_layout
+			# @board.print_layout
 		end
 
 		def parse_move(instruction_string)

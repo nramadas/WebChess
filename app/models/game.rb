@@ -15,7 +15,7 @@ class Game < ActiveRecord::Base
   def move(instruction_string)
     game = YAML::load(self.game_state)
     game.move(instruction_string)
-    puts "Success!"
+
     update_attributes!(game_token: self.game_token,
                        game_state: game.to_yaml,
                        last_moved: self.last_moved *= -1)
@@ -28,16 +28,22 @@ class Game < ActiveRecord::Base
 
   def as_json(options = {})
     game = YAML::load(game_state)
+
     pieces = game.board.layout.flatten.map do |piece|
       if piece
-        piece.token[10]
+        {
+          player: piece.player == :white ? "white" : "black",
+          token: piece.token[10]
+        }
       else
         nil
       end
     end
     {
-      last_moved: self.last_moved,
-      pieces: pieces
+      last_moved: self.last_moved == 1 ? "white" : "black",
+      pieces: pieces,
+      check: game.determine_check(game.current_player),
+      checkmate: game.determine_checkmate(game.current_player)
     }
   end
 

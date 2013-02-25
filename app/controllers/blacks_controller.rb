@@ -1,2 +1,2 @@
-class BlacksController < ApplicationController
+class BlacksController < PlayersController
 end
