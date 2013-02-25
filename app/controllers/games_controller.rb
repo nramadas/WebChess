@@ -3,7 +3,12 @@ class GamesController < ApplicationController
   end
 
   def show
+    @game = Game.find_by_game_token(params[:id])
 
+    respond_to do |format|
+      format.html { render nothing: true }
+      format.json { render json: @game }
+    end
   end
 
   def create

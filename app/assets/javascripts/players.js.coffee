@@ -12,9 +12,11 @@ this.Player = (() ->
 
     this.update = (callback) ->
       $.getJSON(
-        "/games/" + that.game_id + "/" + that.player + ".json",
+        "/games/" + that.game_id + ".json",
         (data) ->
           that.board = data
+
+          console.log(data)
 
           callback() if callback
       )
