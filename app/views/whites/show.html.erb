@@ -1,0 +1,15 @@
+<header>
+  <h1>Player White</h1>
+</header>
+
+<article>
+  <div id="canvas"></div>
+</article>
+
+<script>
+  $(function() {
+    var p = new Player.Canvas($("#canvas"), "<%= @game_id %>", "white");
+    p.printBoard();
+  });
+
+</script>

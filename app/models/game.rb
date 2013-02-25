@@ -8,7 +8,7 @@ class Game < ActiveRecord::Base
 
   def generate_token
     self.game_token = SecureRandom.hex
-    self.last_moved = 1
+    self.last_moved = -1
     self.game_state = Chess::Game.new.to_yaml
   end
 
@@ -22,6 +22,22 @@ class Game < ActiveRecord::Base
 
   def to_param
     game_token
+  end
+
+  def as_json(options = {})
+    game = YAML::load(game_state)
+    pieces = game.board.layout.flatten.map do |piece|
+      if piece
+        piece.token[10]
+      else
+        nil
+      end
+    end
+
+    {
+      last_moved: last_moved,
+      pieces: pieces
+    }
   end
 
   # For testing:

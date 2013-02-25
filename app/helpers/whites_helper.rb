@@ -1,0 +1,2 @@
+module WhitesHelper
+end

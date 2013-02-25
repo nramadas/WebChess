@@ -1,0 +1,2 @@
+class BlacksController < ApplicationController
+end
