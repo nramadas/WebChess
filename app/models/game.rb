@@ -1,5 +1,6 @@
 class Game < ActiveRecord::Base
-  attr_accessible :game_state, :last_moved, :game_token, :white, :black
+  attr_accessible :game_state, :last_moved, :game_token, :white, :black,
+                  :forfeit
   after_initialize :generate_token
 
   validates_presence_of :game_token
@@ -42,7 +43,8 @@ class Game < ActiveRecord::Base
       last_moved: self.last_moved == 1 ? "white" : "black",
       pieces: pieces,
       check: game.determine_check(game.current_player),
-      checkmate: game.determine_checkmate(game.current_player)
+      checkmate: game.determine_checkmate(game.current_player),
+      forfeit: self.forfeit
     }
   end
 

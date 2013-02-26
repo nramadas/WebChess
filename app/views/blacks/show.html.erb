@@ -13,6 +13,17 @@
   $(function() {
     var p = new Player.Canvas($("#canvas"), "<%= @game_id %>", "black");
     p.checkForMove();
+
+  });
+
+  $(window).on("beforeunload", function() {
+    $.ajax({
+        url: "/games/" + "<%= @game_id %>",
+        type: "PUT",
+        data: "forfeit=Black&id=" + "<%= @game_id %>"
+    });
+
+    return "Leaving the page will result in a forfeit.";
   });
 
 </script>

@@ -18,16 +18,20 @@ class GamesController < ApplicationController
 
   def update
     game = Game.find_by_game_token(params[:id])
-    instruction = params[:instruction]
 
-    begin
-      game.move(instruction)
+    if params[:forfeit]
+      game.update_attributes(forfeit: params[:forfeit])
       render nothing: true
-    rescue Chess::BadMove
-      render nothing: true, status: 405
-    end
+    else
+      instruction = params[:instruction]
 
-    # render nothing: true
+      begin
+        game.move(instruction)
+        render nothing: true
+      rescue Chess::BadMove
+        render nothing: true, status: 405
+      end
+    end
   end
 
   def last_moved

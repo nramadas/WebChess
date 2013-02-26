@@ -61,9 +61,6 @@ this.Player = (() ->
             that.board = data
 
             callback() if callback
-
-          418: () ->
-            console.log("Game Over")
         }
       })
 
@@ -116,12 +113,18 @@ this.Player = (() ->
                 if data.check
                   that.printInstructions("Check")
 
-              if data.checkmate
+              if data.checkmate || data.forfeit
                 clearInterval(t)
                 that.printBoard
+                $(window).off("beforeunload")
                 endGameScreen = $("<div class='endGame'></div>")
                 that.element.append(endGameScreen)
-                that.printInstructions("Checkmate!")
+
+                if data.checkmate
+                  that.printInstructions("Checkmate!")
+
+                if data.forfeit
+                  that.printInstructions(data.forfeit + " has forfeited!")
           }
         })
       , 3000)

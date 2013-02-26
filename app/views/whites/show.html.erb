@@ -15,4 +15,14 @@
     p.checkForMove();
   });
 
+  $(window).on("beforeunload", function() {
+    $.ajax({
+        url: "/games/" + "<%= @game_id %>",
+        type: "PUT",
+        data: "forfeit=White&id=" + "<%= @game_id %>"
+    });
+
+    return "Leaving the page will result in a forfeit.";
+  });
+
 </script>
