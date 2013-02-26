@@ -8,5 +8,7 @@ WebChess::Application.routes.draw do
     resource :black, only: [:show]
   end
 
+  resource :error, only: [:show]
+
   root to: "games#index"
 end

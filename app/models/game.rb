@@ -1,6 +1,5 @@
 class Game < ActiveRecord::Base
-  attr_accessible :game_state, :last_moved, :game_token
-  has_many :cookie_items
+  attr_accessible :game_state, :last_moved, :game_token, :white, :black
   after_initialize :generate_token
 
   validates_presence_of :game_token
