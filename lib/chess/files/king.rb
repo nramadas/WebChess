@@ -14,7 +14,7 @@ module Chess
 		end
 
 		def move(row, col)
-			if @first_move && (col == 2 || col == 6)
+			if @first_move && (col == 2 || col == 6) && !in_check?
 				castle(col)
 			else
 				super
@@ -56,11 +56,14 @@ module Chess
 
 			@col = king_col
 			rook.col = rook_end_col
+			rook.first_move = false
 		end
 
 		def castle_causes_check?(rook_start_col, rook_end_col, king_col)
 			duplicate = @board.dup
-			duplicate.layout[@row][@col].execute_castle(rook_start_col, rook_end_col, king_col)
+			duplicate.layout[@row][@col].execute_castle(rook_start_col,
+																									rook_end_col,
+																									king_col)
 
 			duplicate.find_king(@player).in_check?
 		end

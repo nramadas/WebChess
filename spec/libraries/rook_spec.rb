@@ -71,23 +71,23 @@ describe "Rook".red do
 		end
 	end
 
-	describe "castling" do
-		before(:each) do
-			Chess::King.new(0, 4, :black, piece.board)
-		end
+	# describe "castling" do
+	# 	before(:each) do
+	# 		Chess::King.new(0, 4, :black, piece.board)
+	# 	end
 
-		it "is possible if it hasn't moved" do
-			piece.castle
-			piece.row.should eq(0)
-			piece.col.should eq(3)
-		end
+	# 	it "is possible if it hasn't moved" do
+	# 		piece.castle
+	# 		piece.row.should eq(0)
+	# 		piece.col.should eq(3)
+	# 	end
 
-		it "isn't possible if moved" do
-			piece.move(2,0)
-			piece.move(0,0)
-			expect do
-				piece.castle
-			end.to raise_error(Chess::BadMove)
-		end	
-	end
+	# 	it "isn't possible if moved" do
+	# 		piece.move(2,0)
+	# 		piece.move(0,0)
+	# 		expect do
+	# 			piece.castle
+	# 		end.to raise_error(Chess::BadMove)
+	# 	end	
+	# end
 end

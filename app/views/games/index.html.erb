@@ -1,9 +1,19 @@
-<header>
-  <h4>Chess</h4>
-</header>
-
-<article>
+<div class="mainTitle">
+  <h1>Quick Chess</h1>
+  <br>
+  <h1>&#9818; &#9819; &#9820; &#9821; &#9822; &#9823;</h1>
   <%= link_to(games_path, method: :post) do %>
-    <div class="newGameButton">New Game</div>
+    <div class="newGameButton">play now</div>
   <% end %>
-</article>
+</div>
+<div class="titleFiller">
+</div>
+
+<div class="mainArticle">
+  <h1>Get started</h1>
+  <h2>1. Click 'play now'</h2>
+  <h2>2. Copy the game link and send it to a friend</h2>
+  <h2>3. ... ?</h2>
+  <h2>4. Play chess!</h2>
+  <h2>You can find the complete rules for chess <%= link_to "here", "http://en.wikipedia.org/wiki/Rules_of_chess" %></h2>
+</div>

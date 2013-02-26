@@ -99,7 +99,7 @@ this.Player = (() ->
       that.printBoard()
       $(".piece").unbind("click")
       $(".piece").removeClass("piece")
-      that.printInstructions("Waiting for opponent to move...")
+      that.printInstructions("Waiting on opponent...")
 
       t = setInterval(() ->
         $.ajax({
