@@ -19,6 +19,7 @@ header {
     background: $lightSquare;
     display: block;
     line-height: 80%;
+    box-shadow: 0 0 20px 1px $greyShadow;
 
     -webkit-transition: all 0.05s ease-in;
     -moz-transition: all 0.05s ease-in;
@@ -38,6 +39,7 @@ header {
     font-family: 'Junge', serif;
     padding: 10px;
     background: $lightSquare;
+    box-shadow: 0 0 20px 1px $greyShadow;
   }
 
   h3 {
@@ -48,6 +50,7 @@ header {
     left: 0;
     padding: 10px;
     background: $lightSquare;
+    box-shadow: 0 0 20px 1px $greyShadow;
 
     -webkit-transition: all 0.05s ease-in;
     -moz-transition: all 0.05s ease-in;
@@ -63,6 +66,35 @@ header {
     &:hover {
       padding-left: 20px;
     }
+  }
+
+  h4 {
+    text-align: center;
+    font-size: 60px;
+    font-family: 'Griffy', cursive;
+    color: $darkSquare;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.newGameButton {
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 10px;
+  border: 3px solid $lightSquare;
+  color: $lightSquare;
+  width: 150px;
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Text Me One', sans-serif;
+
+  &:hover {
+    background: $lightSquare;
+    color: $darkSquare;
+    border: 3px solid $darkSquare;
   }
 }
 
@@ -120,7 +152,6 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    padding-top: 40%;
     color: red;
     background: rgba(50, 50, 50, 0.8);
   }
@@ -133,5 +164,5 @@ header {
   font-size: 30px;
   font-family: 'Text Me One', sans-serif;
   text-align: center;
-  color: red;
+  color: $lightSquare;
 }

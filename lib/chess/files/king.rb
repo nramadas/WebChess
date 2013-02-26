@@ -14,9 +14,55 @@ module Chess
 		end
 
 		def move(row, col)
-			super
+			if @first_move && (col == 2 || col == 6)
+				castle(col)
+			else
+				super
+			end
 
 			@first_move = false
+		end
+
+		def castle(col)
+			king_col = col == 2 ? 2 : 6
+			rook_end_col = col == 2 ? 3 : 5
+			rook_start_col = col == 2 ? 0 : 7
+
+			rook = @board.layout[@row][rook_start_col]
+
+			if @board.layout[@row][rook_start_col].first_move
+				if rook.is_valid_move?(@row, king_col)
+					if castle_causes_check?(rook_start_col, rook_end_col, king_col)
+						raise BadMove, "Cannot castle into check"
+					else
+						execute_castle(rook_start_col, rook_end_col, king_col)
+					end
+				else
+					raise(BadMove, "Cannot castle: Path is blocked.")
+				end
+			else
+				raise(BadMove, "Cannot castle: Rook has already moved.")
+			end
+		end
+
+		def execute_castle(rook_start_col, rook_end_col, king_col)
+			@board.layout[@row][@col] = nil
+			@board.layout[@row][king_col] = self
+
+			rook = @board.layout[@row][rook_start_col]
+
+			@board.layout[@row][rook_start_col] = nil
+			@board.layout[@row][rook_end_col] = rook
+
+			@col = king_col
+			rook.col = rook_end_col
+		end
+
+		def castle_causes_check?(rook_start_col, rook_end_col, king_col)
+			duplicate = @board.dup
+			duplicate.layout[@row][@col].execute_castle(rook_start_col, rook_end_col, king_col)
+
+			duplicate.find_king(@player).in_check?
 		end
 
 		def in_check?

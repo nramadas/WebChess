@@ -69,7 +69,6 @@ this.Player = (() ->
 
     this.render = () ->
       that.element.empty()
-      $("#instructions").empty()
 
       columns = ['a','b','c','d','e','f','g','h']
 
@@ -100,6 +99,7 @@ this.Player = (() ->
       that.printBoard()
       $(".piece").unbind("click")
       $(".piece").removeClass("piece")
+      that.printInstructions("Waiting for opponent to move...")
 
       t = setInterval(() ->
         $.ajax({
@@ -111,18 +111,24 @@ this.Player = (() ->
                 clearInterval(t)
                 that.board = data
                 that.render()
+                that.printInstructions("Your turn...")
 
                 if data.check
-                  $("#instructions").append("In Check")
+                  that.printInstructions("Check")
 
               if data.checkmate
                 clearInterval(t)
                 that.printBoard
                 endGameScreen = $("<div class='endGame'></div>")
                 that.element.append(endGameScreen)
+                that.printInstructions("Checkmate!")
           }
         })
       , 3000)
+
+    this.printInstructions = (instruction) ->
+      $("#instructions").empty()
+      $("#instructions").append(instruction)
 
     return
 

@@ -1,5 +1,7 @@
 module Chess
 	class Rook < Piece
+		attr_reader :first_move
+
 		def initialize(row, col, player, board)
 			super
 

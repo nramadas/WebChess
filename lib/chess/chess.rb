@@ -42,8 +42,6 @@ module Chess
 		def move(instruction_string)
 			start_pos, end_pos = parse_move(instruction_string)
 
-			# check = determine_check(@current_player)
-
 			piece = get_piece(start_pos)
 
 			if piece && piece.player != @current_player
@@ -57,8 +55,6 @@ module Chess
 			end
 
 			@current_player = piece.other_player
-
-			# @board.print_layout
 		end
 
 		def parse_move(instruction_string)

@@ -73,7 +73,7 @@ module Chess
 		end
 
 		def castle
-			raise(BadMove, "Please use Rook to castle")
+			raise(BadMove, "Please use King to castle")
 		end
 
 		def is_valid_move?(row, col)
