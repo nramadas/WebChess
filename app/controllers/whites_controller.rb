@@ -1,9 +1,7 @@
 class WhitesController < PlayersController
   def show
     game = Game.find_by_game_token(params[:game_id])
-    puts "-------"
-    puts request.remote_ip
-    puts "-------"
+
     if game.white && game.white != "#{request.remote_ip}"
       redirect_to error_path
     else
