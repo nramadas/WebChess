@@ -8,14 +8,15 @@ module Chess
     WHITE_PAWN = [[-1, -1], [-1, 0], [-1, 1], [-2, 0]]
   	ALL = DIAGONAL + STRAIGHT
 
-		attr_accessor :row, :col
+		attr_accessor :row, :col, :first_move
 		attr_reader :player, :board, :move_type
 
-		def initialize(row, col, player, board)
+		def initialize(row, col, player, board, parent_first_move = nil)
 			@row, @col = row, col
 			@player, @board = player, board
 			@board.layout[@row][@col] = self
 			@board.pieces << self
+			@first_move = false
 			@move_type = nil
 		end
 
@@ -34,7 +35,7 @@ module Chess
 	        possibilities << move
 	        x, y = x + pair[0], y + pair[1]
 
-	        break if self.is_a?(King) || self.is_a?(Pawn)
+	        break if self.is_a?(King) || self.is_a?(Pawn) || self.is_a?(Knight)
 	      end
 	    end
 	    possibilities
@@ -42,6 +43,7 @@ module Chess
 
 	  def move(row, col)
 			if is_valid_move?(row, col)
+
 				old_row, old_col = @row, @col
 
 				# get rid of piece in player's collection if needed
@@ -69,7 +71,7 @@ module Chess
 		end
 
 		def dup(board)
-			self.class.new(@row, @col, @player, board)
+			self.class.new(@row, @col, @player, board, @first_move)
 		end
 
 		def castle

@@ -1,9 +1,13 @@
 module Chess
 	class Pawn < Piece
-		def initialize(row, col, player, board)
+		def initialize(row, col, player, board, parent_first_move = nil)
 			super
 
-			@first_move = true
+			if parent_first_move.nil?
+				@first_move = true
+			else
+				@first_move = parent_first_move
+			end
 			@move_type = (@player == :black) ? BLACK_PAWN : WHITE_PAWN
 		end
 

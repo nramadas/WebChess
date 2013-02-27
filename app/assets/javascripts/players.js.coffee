@@ -29,8 +29,9 @@ this.Player = (() ->
             200: () -> # move successful
               callback()
 
-            405: () -> # move not allowed
-              refresh()
+            405: (data) -> # move not allowed
+              console.log(data.responseText)
+              refresh(data.responseText)
 
           }
         })
@@ -64,8 +65,9 @@ this.Player = (() ->
         }
       })
 
-    this.render = () ->
+    this.render = (instruction) ->
       that.element.empty()
+      that.printInstructions(instruction) if instruction
 
       columns = ['a','b','c','d','e','f','g','h']
 

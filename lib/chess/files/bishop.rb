@@ -1,6 +1,6 @@
 module Chess
 	class Bishop < Piece
-		def initialize(row, col, player, board)
+		def initialize(row, col, player, board, parent_first_move = nil)
 			super
 
 			@move_type = DIAGONAL

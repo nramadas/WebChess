@@ -1,12 +1,14 @@
 module Chess
 	class Rook < Piece
-		attr_accessor :first_move
-
-		def initialize(row, col, player, board)
+		def initialize(row, col, player, board, parent_first_move = nil)
 			super
 
 			@move_type = STRAIGHT
-			@first_move = true
+			if parent_first_move.nil?
+				@first_move = true
+			else
+				@first_move = parent_first_move
+			end
 		end
 
 		def token

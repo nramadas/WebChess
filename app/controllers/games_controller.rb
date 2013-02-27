@@ -28,8 +28,8 @@ class GamesController < ApplicationController
       begin
         game.move(instruction)
         render nothing: true
-      rescue Chess::BadMove
-        render nothing: true, status: 405
+      rescue Chess::BadMove => e
+        render json: e.message, status: 405
       end
     end
   end

@@ -1,12 +1,14 @@
 module Chess
 	class King < Piece
-		attr_reader :first_move
-
-		def initialize(row, col, player, board)
+		def initialize(row, col, player, board, parent_first_move = nil)
 			super
 
 			@move_type = ALL
-			@first_move = true
+		if parent_first_move.nil?
+				@first_move = true
+			else
+				@first_move = parent_first_move
+			end
 		end
 
 		def token
@@ -30,7 +32,7 @@ module Chess
 
 			rook = @board.layout[@row][rook_start_col]
 
-			if @board.layout[@row][rook_start_col].first_move
+			if rook && rook.first_move
 				if rook.is_valid_move?(@row, king_col)
 					if castle_causes_check?(rook_start_col, rook_end_col, king_col)
 						raise BadMove, "Cannot castle into check"
@@ -69,6 +71,7 @@ module Chess
 		end
 
 		def in_check?
+
 			@board.pieces.each do |piece|
 				next if piece.player == @player
 
