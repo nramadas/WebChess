@@ -46,8 +46,6 @@ module Chess
 
 			if piece && piece.player != @current_player
 				raise BadMove, "Cannot move piece."
-			# elsif end_pos == 'x'
-			# 	piece.castle
 			elsif piece.move_causes_check?(end_pos[0], end_pos[1])
 				raise BadMove, "Cannot move into check."
 			else
