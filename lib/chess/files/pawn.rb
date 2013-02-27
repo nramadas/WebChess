@@ -8,7 +8,7 @@ module Chess
 		end
 
 		def token
-			(@player == :black) ? "\u265f".blue : "\u2659".yellow
+			(@player == :black) ? "\u265f" : "\u2659"
 		end
 
 		def move(row, col)

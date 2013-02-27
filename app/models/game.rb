@@ -33,7 +33,7 @@ class Game < ActiveRecord::Base
       if piece
         {
           player: piece.player == :white ? "white" : "black",
-          token: piece.token[10]
+          token: piece.token[0]
         }
       else
         nil

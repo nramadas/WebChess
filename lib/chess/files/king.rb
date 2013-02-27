@@ -10,7 +10,7 @@ module Chess
 		end
 
 		def token
-			(@player == :black) ? "\u265a".blue : "\u2654".yellow
+			(@player == :black) ? "\u265a" : "\u2654"
 		end
 
 		def move(row, col)

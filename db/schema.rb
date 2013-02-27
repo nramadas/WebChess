@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(:version => 20130226223238) do
 
   create_table "games", :force => true do |t|
-    t.string   "game_state"
+    t.text     "game_state"
     t.string   "game_token"
     t.integer  "last_moved"
     t.datetime "created_at", :null => false

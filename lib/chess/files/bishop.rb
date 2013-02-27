@@ -7,7 +7,7 @@ module Chess
 		end
 
 		def token
-			(@player == :black) ? "\u265d".blue : "\u2657".yellow
+			(@player == :black) ? "\u265d" : "\u2657"
 		end
 	end
 end
