@@ -37,7 +37,7 @@ $bckColor: rgb(35,35,35);
 header {
   h1 {
     border-radius: 0 10px 10px 0;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     font-family: 'Griffy', cursive;
@@ -51,6 +51,10 @@ header {
     -moz-transition: all 0.05s ease-in;
     -o-transition: all 0.05s ease-in;
 
+    @media only screen and (max-width: 480px) {
+      display: none;
+    }
+
     a {
       color: $darkSquare;
       text-decoration: none;
@@ -60,7 +64,7 @@ header {
   h2 {
     color: $bckColor;
     border-radius: 0 10px 10px 0;
-    position: fixed;
+    position: absolute;
     top: 60px;
     left: 0;
     font-family: 'Junge', serif;
@@ -68,18 +72,36 @@ header {
     background: $lightSquare;
     box-shadow: 0 0 20px 1px $greyShadow;
     cursor: default;
+
+    @media only screen and (max-width: 800px) {
+      font-size: 20px;
+      top: 65px;
+    }
+
+    @media only screen and (max-width: 480px) {
+      display: none;
+    }
   }
 
   h3 {
     color: $bckColor;
     border-radius: 0 10px 10px 0;
     font-family: 'Text Me One', sans-serif;
-    position: fixed;
+    position: absolute;
     top: 125px;
     left: 0;
     padding: 10px;
     background: $lightSquare;
     box-shadow: 0 0 20px 1px $greyShadow;
+
+    @media only screen and (max-width: 800px) {
+      font-size: 15px;
+    }
+
+    @media only screen and (max-width: 480px) {
+      top: 0px;
+      font-size: 10px;
+    }
 
     -webkit-transition: all 0.05s ease-in;
     -moz-transition: all 0.05s ease-in;
@@ -104,18 +126,51 @@ header {
   margin: 0;
   background: image_url("bck1.png");
   height: 300px;
+
+  @media only screen and (max-width: 600px) {
+    height: 200px;
+    padding: 100px;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 50px;
+  }
+
+  .hideMe {
+    @media only screen and (max-width: 800px) {
+      font-size: 40px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      font-size: 40px;
+    }
+
+    @media only screen and (max-width: 320px) {
+      font-size: 25px;
+    }
+  }
   
   h1 {
     margin: 0;
     font-size: 80px;
     font-family: 'Griffy', cursive;
     color: $bckColor;
+
+    @media only screen and (max-width: 600px) {
+      font-size: 60px;
+    }
+
+    @media only screen and (max-width: 320px) {
+      font-size: 35px;
+    }
+
   }
 
   h2 {
     font-family: 'Text Me One', sans-serif;
     color: $bckColor;
     margin-bottom: 50px;
+
     font-size: 40px;
 
     a {
@@ -134,8 +189,34 @@ header {
   }
 }
 
+.hideMe {
+  @media only screen and (max-width: 800px) {
+    color: pink;
+  }
+}
+
 .errorPage {
   height: 100%;
+
+  @media only screen and (max-width: 800px) {
+    padding: 100px;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 50px;
+
+    h1 {
+      font-size: 35px;
+    }
+
+    h2 {
+      font-size: 25px;
+    }
+  }
+
+  @media only screen and (max-width: 320px) {
+    padding: 20px;
+  }
 }
 
 .titleFiller {
@@ -169,6 +250,14 @@ a {
 
 .mainArticle {
   margin: 80px;
+
+  @media only screen and (max-width: 480px) {
+    margin: 30px;
+  }
+
+  @media only screen and (max-width: 320px) {
+    margin: 20px;
+  }
 
   h1 {
     font-family: 'Junge', serif;
@@ -204,6 +293,20 @@ a {
   border: 1px solid black;
   box-shadow: 0 0 20px 1px $greyShadow;
 
+  @media only screen and (max-width: 720px) {
+    margin-top: 220px;
+  }
+
+  @media only screen and (max-width: 480px) {
+    margin-top: 50px;
+    width: 200px;
+    height: 200px;
+  }
+
+  @media only screen and (max-width: 320px) {
+    margin-top: 100px;
+  }
+
   .square {
     float:left;
     width: 12.5%;
@@ -216,6 +319,10 @@ a {
     -webkit-transition: 2ms;
     -o-transition: 2ms;
     transition: 2ms;
+
+    @media only screen and (max-width: 480px) {
+      font-size: 15px;
+    }
   }
 
   .dark {
