@@ -1,8 +1,6 @@
 # WebChess #
 
-Demo can be found here, under the moniker Quick Chess:
-
-quickchess.herokuapp.com
+Demo can be found [here](quickchess.herokuapp.com), under the moniker Quick Chess.
 
 ## Features ##
 
