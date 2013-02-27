@@ -16,14 +16,20 @@
 
   });
 
+  $(window).on("unload", function() {
+    $.ajax({
+        url: "/games/" + "<%= @game_id %>",
+        type: "PUT",
+        data: "forfeit=Black&id=" + "<%= @game_id %>"
+    });
+  });
+
   $(window).on("beforeunload", function() {
     $.ajax({
         url: "/games/" + "<%= @game_id %>",
         type: "PUT",
         data: "forfeit=Black&id=" + "<%= @game_id %>"
     });
-
-    // return "Leaving the page will result in a forfeit.";
   });
 
 </script>
